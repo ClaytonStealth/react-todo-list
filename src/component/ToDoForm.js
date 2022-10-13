@@ -36,6 +36,13 @@ const ToDoForm = (props) => {
         }}
       ></textarea>
       <br />
+      <button
+        onClick={(e) => {
+          props.handleAddToDo(title, priority, description);
+        }}
+      >
+        Add ToDo
+      </button>
     </div>
   );
 };

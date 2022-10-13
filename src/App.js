@@ -25,6 +25,7 @@ const ToDoItem = (props) => {
       {props.toDo.completedDate && (
         <p>Completed Date: {props.toDo.completedDate}</p>
       )}
+      <p>Description: {props.toDo.description}</p>
     </div>
   );
 };
@@ -41,14 +42,21 @@ const App = () => {
     },
   ]);
 
-  const handleAddToDo = (toDo) => {
-    const toDoListCopy = [...toDoList];
-    toDoListCopy.push(toDo);
+  const handleAddToDo = (title, priority, description) => {
+    const newToDo = {
+      title: title,
+      priority: priority,
+      isComplete: false,
+      description: description,
+      creationDate: new Date().toString(),
+      completedDate: null,
+    };
+    const toDoListCopy = [...toDoList, newToDo];
     setToDoList(toDoListCopy);
   };
   return (
     <div className='App-header'>
-      <ToDoForm />
+      <ToDoForm handleAddToDo={handleAddToDo} />
       <ToDoListContainer toDoList={toDoList} />
     </div>
   );
