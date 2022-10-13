@@ -16,7 +16,14 @@ const ToDoListContainer = (props) => {
 
 const ToDoItem = (props) => {
   console.log(props.toDo);
-  return <div></div>;
+  return (
+    <div>
+      <h2>{props.title}</h2>
+      <p>{props.priority}</p>
+      <p>{props.creationDate}</p>
+      <p>{props.completedDate}</p>
+    </div>
+  );
 };
 
 const App = () => {
