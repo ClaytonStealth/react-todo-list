@@ -17,15 +17,15 @@ const ToDoListContainer = (props) => {
 
 const ToDoItem = (props) => {
   console.log(props.toDo);
+  const { title, priority, description, creationDate, completedDate } =
+    props.toDo;
   return (
     <div>
-      <h2>{props.toDo.title}</h2>
-      <p>{props.toDo.priority}</p>
-      <p>{props.toDo.creationDate}</p>
-      {props.toDo.completedDate && (
-        <p>Completed Date: {props.toDo.completedDate}</p>
-      )}
-      <p>Description: {props.toDo.description}</p>
+      <h2>{title}</h2>
+      <p>{priority}</p>
+      <p>{creationDate}</p>
+      {completedDate && <p>Completed Date: {completedDate}</p>}
+      <p>Description: {description}</p>
     </div>
   );
 };
@@ -44,11 +44,11 @@ const App = () => {
 
   const handleAddToDo = (title, priority, description) => {
     const newToDo = {
-      title: title,
-      priority: priority,
+      title,
+      priority,
       isComplete: false,
-      description: description,
-      creationDate: new Date().toString(),
+      description,
+      creationDate: new Date().toString().substring(4, 24),
       completedDate: null,
     };
     const toDoListCopy = [...toDoList, newToDo];

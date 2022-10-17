@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 
 const ToDoForm = (props) => {
+  const { handleAddToDo } = props;
+
   const [title, setTitle] = useState("");
   const [priority, setPriority] = useState("");
   const [description, setDescription] = useState("");
@@ -9,6 +11,7 @@ const ToDoForm = (props) => {
       <label>Title</label>
       <input
         type='text'
+        value={title}
         onChange={(e) => {
           setTitle(e.target.value);
           console.log(title);
@@ -17,12 +20,13 @@ const ToDoForm = (props) => {
       <br />
       <label>Priority</label>
       <select
+        value={priority}
         onChange={(e) => {
           setPriority(e.target.value);
           console.log(priority);
         }}
       >
-        <option value=''></option>
+        <option value={""}>Select Option</option>
         <option value='Low'>Low</option>
         <option value='Medium'>Medium</option>
         <option value='High'>High</option>
@@ -30,6 +34,7 @@ const ToDoForm = (props) => {
       <br />
       <label>Description</label>
       <textarea
+        value={description}
         onChange={(e) => {
           setDescription(e.target.value);
           console.log(description);
@@ -38,7 +43,10 @@ const ToDoForm = (props) => {
       <br />
       <button
         onClick={(e) => {
-          props.handleAddToDo(title, priority, description);
+          handleAddToDo(title, priority, description);
+          setTitle("");
+          setPriority("");
+          setDescription("");
         }}
       >
         Add ToDo
